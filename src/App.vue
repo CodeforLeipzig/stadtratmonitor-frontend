@@ -1,22 +1,30 @@
 <script lang="ts">
 import MainMenu from './components/MainMenu.vue'
 import Search from './components/Search.vue'
+import Data from './components/Data.vue'
 
 export default {
   components: {
     MainMenu,
-    Search
+    Search,
+    Data,
+  },
+  data() {
+    return {
+      applicationName: this.applicationName,
+    }
   }
 }
 </script>
 
 <template>
-  <header class="w-screen">
-    <h1 class="">{{ this.applicationName }}</h1>
+  <header class="w-screen flex flex-row">
+    <h1 class="">{{ applicationName }}</h1>
     <MainMenu />
     <Search />
   </header>
 
   <main>
+    <Data />
   </main>
 </template>

@@ -2,12 +2,17 @@
 export default {
   data() {
     return {
-      searchTerm: '',
+      apiUri: this.appUri, 
+    }
+  }, 
+  methods: {
+    async fetchData() {
+      
     }
   }
 }
 </script>
 
 <template>
-  <div>Search</div>
+  
 </template>
