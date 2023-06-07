@@ -5,6 +5,9 @@ import App from './App.vue'
 
 const app = createApp(App)
 
-app.config.globalProperties.applicationName = 'Stadtratmonitor'
+app.config.globalProperties = {
+    ...app.config.globalProperties,
+    applicationName: 'Stadtratmonitor',
+}
 
 app.mount('#app')
