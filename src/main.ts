@@ -7,7 +7,7 @@ const app = createApp(App)
 
 app.config.globalProperties = {
   ...app.config.globalProperties,
-  apiUri: 'https://jsonplaceholder.typicode.com/posts/',
+  apiUri: 'https://joergreichert.de/srm/input.json',
   applicationName: 'Stadtratmonitor',
   menuEntries: {
     0: {
@@ -22,7 +22,7 @@ app.config.globalProperties = {
       name: 'Glossar', 
       uri: '/glossar'
     }
-},
+  },
 }
 
 app.mount('#app')
