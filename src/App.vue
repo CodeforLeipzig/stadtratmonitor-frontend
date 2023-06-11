@@ -18,8 +18,8 @@ export default {
 </script>
 
 <template>
-  <header class="w-screen flex flex-row">
-    <h1 class="">{{ applicationName }}</h1>
+  <header class="w-screen flex flex-row place-content-center">
+    <h1 class="p-2 text-xl">{{ applicationName }}</h1>
     <MainMenu />
     <Search />
   </header>

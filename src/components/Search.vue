@@ -9,5 +9,7 @@ export default {
 </script>
 
 <template>
-  <div>Search</div>
+  <form>
+    <input class="p-2" type="search" placeholder="Suche …">
+  </form>
 </template>
