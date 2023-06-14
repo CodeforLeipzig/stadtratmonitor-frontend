@@ -1,5 +1,5 @@
 <script lang="ts">
-type Papers = {
+export type Papers = {
   body: string
   content: string
   name: string
@@ -15,6 +15,9 @@ export default {
   created() {
     this.fetchData()
   },
+  updated() {
+    this.$emit('papers', this.papers)
+  },
   data() {
     return {
       apiUri: 'https://raw.githubusercontent.com/CodeforLeipzig/stadtratmonitor/master/input.json', 
@@ -23,12 +26,22 @@ export default {
   }, 
   props: {
     filterValue: String,
+    paperFilter: Array,
   },
   computed: {
     filteredData() {
-      const filterValue: string = this.filterValue
-      let filteredPapers: Papers[] = []
-      filteredPapers = this.papers.filter((paper) => paper.name.includes(filterValue))
+      const filterValue: String = this.filterValue
+      let filteredPapers: Papers[] = this.papers
+      if (filterValue !== '') {
+        filteredPapers = this.papers.filter((paper) => {
+          return paper.name.toLowerCase().includes(filterValue.toLowerCase())
+        })
+      }
+      if (this.paperFilter?.type !== '') {
+        filteredPapers = filteredPapers.filter((paper) => {
+          return paper.reference.includes(this.paperFilter?.type)
+        })
+      }
       return filteredPapers
     }
   },
@@ -42,6 +55,7 @@ export default {
 </script>
 
 <template>
+  {{ paperFilter }}
   <ul v-if="filteredData.length">
     <li v-for="(paper, i) in filteredData" :key="i">
       <article

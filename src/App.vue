@@ -1,6 +1,7 @@
 <script lang="ts">
 import MainMenu from './components/MainMenu.vue'
 import Search from './components/Search.vue'
+import Filter from './components/Filter.vue'
 import Papers from './components/Papers.vue'
 import FooterMenu from './components/FooterMenu.vue'
 
@@ -8,6 +9,7 @@ export default {
   components: {
     MainMenu,
     Search,
+    Filter,
     Papers,
     FooterMenu,
   },
@@ -19,10 +21,15 @@ export default {
         value: '',
         type: '',
       },
+      papers: [],
+      paperFilter: {
+        type: '',
+        originator: '',
+      },
     }
   }
 }
-</script>
+</script>search.value
 
 <template>
   <header class="w-screen flex flex-col place-content-center">
@@ -36,9 +43,16 @@ export default {
     />
   </header>
 
-  <main class="max-w-5xl m-auto">
-    <p>Ergebnisse für „{{ search.value }}/{{ search.type }}“</p>
-    <Papers :filterValue="search.value" />
+  <main class="flex flex-row max-w-5xl m-auto">
+    <Filter
+      @paperFilter="(filter) => paperFilter = filter"
+      :papers="papers"
+    />
+    <Papers
+      @papers="(p) => papers = p"
+      :filterValue="search.value"
+      :paperFilter="paperFilter"
+    />
   </main>
 
   <footer>
