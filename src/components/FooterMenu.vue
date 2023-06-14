@@ -2,7 +2,7 @@
 export default {
   data() {
     return {
-      menuEntries: this.mainMenuEntries,
+      menuEntries: this.footerMenuEntries,
     }
   }, 
 }
@@ -10,7 +10,7 @@ export default {
 
 <template>
   <ul class="flex flex-row place-content-center">
-    <li class="p-2 place-content-center" v-for="(entry, i) of menuEntries" :key="i">
+    <li class="p-2 place-content-center" v-for="entry of menuEntries">
       <a :href="entry.uri">{{ entry.name }}</a>
     </li>
   </ul>

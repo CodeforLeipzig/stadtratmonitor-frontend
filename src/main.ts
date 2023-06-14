@@ -9,7 +9,8 @@ app.config.globalProperties = {
   ...app.config.globalProperties,
   apiUri: 'https://joergreichert.de/srm/input.json',
   applicationName: 'Stadtratmonitor',
-  menuEntries: {
+  cityName: 'Leipzig',
+  mainMenuEntries: {
     0: {
       name: 'Startseite',
       uri: '/',
@@ -22,6 +23,16 @@ app.config.globalProperties = {
       name: 'Glossar', 
       uri: '/glossar'
     }
+  },
+  footerMenuEntries: {
+    0: {
+      name: 'Impressum',
+      uri: '/impressum',
+    }, 
+    1: {
+      name: 'Über diese Seite',
+      uri: '/über'
+    },
   },
 }
 
