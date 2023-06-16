@@ -1,11 +1,9 @@
 <script lang="ts">
-import { toValue } from 'vue'
-import { Papers } from './Papers.vue'
+import { type Papers } from './Papers.vue'
 
 export default {
   updated() {
     this.$emit('paperFilter', this.paperFilter)
-    /* this.paperFilter.type = this.paperTypes.key this.paperFilter.type. */
   },
   data() {
     return {
