@@ -32,8 +32,8 @@ export default {
 </script>search.value
 
 <template>
-  <header class="w-screen flex flex-col place-content-center">
-    <div class="flex flex-row place-content-center bg-amber-300 text-sky-700">
+  <header class="w-screen flex flex-col place-content-center bg-background-100 dark:bg-background-900 text-text-900 dark:text-text-100">
+    <div class="flex flex-row place-content-center">
       <h1 class="p-2 text-xl">{{ applicationName }} {{ cityName }}</h1>
       <MainMenu />
     </div>
