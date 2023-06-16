@@ -64,7 +64,11 @@ export default {
     v-if="filteredData.length"
     class="w-full grid grid-flow-row gap-2 my-2"
   >
-    <li v-for="(paper, i) in filteredData" :key="i">
+    <p>Wir konnten {{ filteredData.length }} Einträge finden</p>
+    <li 
+      v-for="(paper, i) in filteredData"
+      :key="i"
+    >
       <article
         class="p-4 rounded-lg bg-background-100 dark:bg-background-900"
         @click.prevent="openPaper()"
