@@ -42,6 +42,11 @@ export default {
           return paper.reference.includes(this.paperFilter?.type.key) && paper.paper_type.includes(this.paperFilter?.type.value)
         })
       }
+      if (this.paperFilter?.originator !== '') {
+        filteredPapers = filteredPapers.filter((paper) => {
+          return paper.originator.includes(this.paperFilter?.originator)
+        })
+      }
       return filteredPapers
     }
   },
@@ -55,8 +60,10 @@ export default {
 </script>
 
 <template>
-  {{ paperFilter }}
-  <ul v-if="filteredData.length">
+  <ul
+    v-if="filteredData.length"
+    class="w-full"
+  >
     <li v-for="(paper, i) in filteredData" :key="i">
       <article
         class="my-4 p-2 border border-solid border-amber-300 rounded-md"

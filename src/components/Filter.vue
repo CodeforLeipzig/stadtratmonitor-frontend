@@ -100,5 +100,19 @@ export default {
         >✖
       </button>
     </fieldset>
+    <fieldset class="flex flex-row mb-4">
+      <legend>Einreicher</legend>
+      <select 
+        class="w-40 p-2 bg-background-100 rounded-lg"
+        v-model="paperFilter.originator">
+        <option v-for="(originator, i) of paperOriginators" :key="i">{{ originator }}</option>
+      </select>
+      <button 
+        class="pl-2"
+        @click.prevent="paperFilter.originator = ''"
+        title="zurücksetzen"
+        >✖
+      </button>
+    </fieldset>
   </form>
 </template>
