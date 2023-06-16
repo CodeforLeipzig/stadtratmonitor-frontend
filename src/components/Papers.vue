@@ -39,7 +39,7 @@ export default {
       }
       if (this.paperFilter?.type !== '') {
         filteredPapers = filteredPapers.filter((paper) => {
-          return paper.reference.includes(this.paperFilter?.type)
+          return paper.reference.includes(this.paperFilter?.type.key) && paper.paper_type.includes(this.paperFilter?.type.value)
         })
       }
       return filteredPapers

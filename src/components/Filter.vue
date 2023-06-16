@@ -56,7 +56,10 @@ export default {
         },
       ],
       paperFilter: {
-        type: '',
+        type: {
+          key: '',
+          value: '',
+        },
         originator: '',
       },
     }
