@@ -20,8 +20,8 @@ app.config.globalProperties = {
       uri: '/karte'
     },
     2: {
-      name: 'Glossar', 
-      uri: '/glossar'
+      name: 'Dokumentation', 
+      uri: '/doku'
     }
   },
   footerMenuEntries: {
