@@ -67,7 +67,7 @@ export default {
   },
   computed: {
     paperOriginators() {
-      return [...new Set(this.papers?.map((paper: Papers) => paper.originator))]
+      return [...new Set(this.papers?.map((paper: Papers) => paper.originator))].sort()
     },
     /* paperType() {
       return this.paperTypes.filter((type) => type.key == )
