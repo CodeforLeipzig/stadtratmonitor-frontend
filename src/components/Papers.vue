@@ -25,16 +25,16 @@ export default {
     }
   }, 
   props: {
-    filterValue: String,
-    paperFilter: Array,
+    paperQuery: Object,
+    paperFilter: Object,
   },
   computed: {
     filteredData() {
-      const filterValue: String = this.filterValue
+      const paperQuery: String = this.paperQuery?.value
       let filteredPapers: Papers[] = this.papers
-      if (filterValue !== '') {
+      if (paperQuery !== '') {
         filteredPapers = this.papers.filter((paper) => {
-          return paper.name.toLowerCase().includes(filterValue.toLowerCase())
+          return paper.name.toLowerCase().includes(paperQuery.toLowerCase())
         })
       }
       if (this.paperFilter?.type !== '') {

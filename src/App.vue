@@ -50,7 +50,7 @@ export default {
     />
     <Papers
       @papers="(p) => papers = p"
-      :filterValue="search.value"
+      :paperQuery="search"
       :paperFilter="paperFilter"
     />
   </main>
