@@ -29,7 +29,7 @@ export default {
     }
   }
 }
-</script>search.value
+</script>
 
 <template>
   <header class="w-screen flex flex-col place-content-center bg-background-100 dark:bg-background-900 text-text-900 dark:text-text-100">
