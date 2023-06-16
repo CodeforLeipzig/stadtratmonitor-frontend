@@ -34,7 +34,7 @@ export default {
       let filteredPapers: Papers[] = this.papers
       if (paperQuery !== '') {
         filteredPapers = this.papers.filter((paper) => {
-          return paper.name.toLowerCase().includes(paperQuery.toLowerCase())
+          return paper.name.toLowerCase().includes(paperQuery.toLowerCase()) || paper.content.toLowerCase().includes(paperQuery.toLowerCase()) || paper.reference.toLowerCase().includes(paperQuery.toLowerCase())
         })
       }
       if (this.paperFilter?.type !== '') {
