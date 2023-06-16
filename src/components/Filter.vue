@@ -11,13 +11,49 @@ export default {
     return {
       paperTypes: [
         {
-          key: 'DS',
-          value: 'Beschlussvorlage',
+          value: 'Anfrage',
+          key: 'F',
         },
         {
-          key: 'A',
+          value: 'Einwohneranfrage',
+          key: 'EF',
+        },
+        {
           value: 'Antrag',
-        }
+          key: 'A',
+        },
+        {
+          value: 'Antwort zur Anfrage',
+          key: 'AW',
+        },
+        {
+          value: 'Änderungsantrag',
+          key: 'ÄA',
+        },
+        {
+          value: 'Beschlussvorlage',
+          key: 'DS',
+        },
+        {
+          value: 'Informationsvorlage',
+          key: 'Ifo',
+        },
+        {
+          value: 'Neufassung',
+          key: 'NF',
+        },
+        {
+          value: 'Petition',
+          key: 'P',
+        },
+        {
+          value: 'Verwaltungsstandpunkt',
+          key: 'VSP',
+        },
+        {
+          value: 'Wichtige Angelegenheit',
+          key: 'WA',
+        },
       ],
       paperFilter: {
         type: '',
