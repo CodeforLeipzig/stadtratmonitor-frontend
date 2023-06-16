@@ -26,7 +26,7 @@ export default {
       <input
         class="p-6 grow bg-transparent placeholder:text-amber-400 text-sky-700 text-2xl text-center focus-visible:outline focus-visible:outline-current"
         type="search"
-        placeholder="Suche z. B. nach XY"
+        placeholder="z. B. XY"
         v-model="search.value"
         @keyup.alt.enter.exact="submit('assist')"
         @keyup.enter.exact="submit('filter')"
@@ -36,14 +36,14 @@ export default {
           class="py-2 px-4 bg-amber-400 hover:bg-amber-500 rounded-l-lg border-r-2 border-amber-500 text-white"
           @click.prevent="submit('filter')"
           aria-keyshortcuts="Enter"
-          >Filter
+          >Suchen
         </button>
         <button
           class="py-2 px-4 bg-amber-400 hover:bg-amber-500 rounded-r-lg text-white"
           @click.prevent="submit('assist')"
           aria-keyshortcuts="Alt+Enter"
           title="Tastenkürzel: Alt + Enter"
-          >Assistent
+          >Fragen
         </button>
       </div>
     </div>
