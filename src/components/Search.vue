@@ -26,7 +26,7 @@ export default {
       <input
         class="p-6 grow bg-transparent placeholder:text-text-200 text-2xl text-center focus-visible:outline focus-visible:outline-current"
         type="search"
-        placeholder="z. B. XY"
+        placeholder="z. B. Thema, Name, VII-EF-08640, …"
         v-model="search.value"
         @keyup.alt.enter.exact="submit('assist')"
         @keyup.enter.exact="submit('filter')"
