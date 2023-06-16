@@ -81,19 +81,24 @@ export default {
 
 <template>
   <form class="mr-4 mt-4">
-    <select
-      class="w-40"
-      v-model="paperFilter.type">
-      <option
-        v-for="(type, i) of paperTypes"
-        :key="i"
-        >{{ type.value }}
-      </option>
-    </select>
-    <select 
-      class="w-40"
-      v-model="paperFilter.originator">
-      <option v-for="(originator, i) of paperOriginators" :key="i">{{ originator }}</option>
-    </select>
+    <fieldset class="flex flex-row mb-4">
+      <legend>Kategorie</legend>
+      <select
+        class="w-40 p-2 bg-background-100 rounded-lg"
+        v-model="paperFilter.type">
+        <option
+          v-for="(type, i) of paperTypes"
+          :key="i"
+          :value="type"
+          >{{ type.value }}
+        </option>
+      </select>
+      <button 
+        class="pl-2"
+        @click.prevent="paperFilter.type = { key: '', value: ''}"
+        title="zurücksetzen"
+        >✖
+      </button>
+    </fieldset>
   </form>
 </template>
