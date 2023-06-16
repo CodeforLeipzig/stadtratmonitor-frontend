@@ -62,11 +62,11 @@ export default {
 <template>
   <ul
     v-if="filteredData.length"
-    class="w-full"
+    class="w-full grid grid-flow-row gap-2 my-2"
   >
     <li v-for="(paper, i) in filteredData" :key="i">
       <article
-        class="my-4 p-2 border border-solid border-amber-300 rounded-md"
+        class="p-4 rounded-lg bg-background-100 dark:bg-background-900"
         @click.prevent="openPaper()"
       >
         <h4 class="text-xl">{{ paper.name }}</h4>
