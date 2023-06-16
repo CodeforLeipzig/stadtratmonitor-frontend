@@ -24,7 +24,7 @@ export default {
   <form class="sticky top-0 flex flex-row place-content-center">
     <div class="flex flex-row w-full max-w-5xl">
       <input
-        class="p-6 grow bg-transparent placeholder:text-text-200 text-2xl text-center focus-visible:outline focus-visible:outline-current"
+        class="p-6 grow bg-transparent placeholder:text-text-300 dark:placeholder:text-text-700 text-2xl text-center focus-visible:outline focus-visible:outline-current"
         type="search"
         placeholder="z. B. Thema, Name, VII-EF-08640, …"
         v-model="search.value"
