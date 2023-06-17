@@ -1,5 +1,5 @@
 <script lang="ts">
-import { type Papers } from './Papers.vue'
+import { type Papers } from './PaperList.vue'
 
 export default {
   updated() {

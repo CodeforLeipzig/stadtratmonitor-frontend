@@ -58,7 +58,7 @@ export default {
     openPaper() {
 
     },
-    date(paperDate: String) {
+    date(paperDate: string) {
       const date = new Date(paperDate)
       return new Intl.DateTimeFormat('de-DE', { dateStyle: 'full' }).format(date)
     },
