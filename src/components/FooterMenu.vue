@@ -10,7 +10,11 @@ export default {
 
 <template>
   <ul class="flex flex-row place-content-center">
-    <li class="p-2 place-content-center" v-for="entry of menuEntries">
+    <li
+      v-for="{entry, i} of menuEntries"
+      :key="i"
+      class="p-2 place-content-center"
+    >
       <a :href="entry.uri">{{ entry.name }}</a>
     </li>
   </ul>

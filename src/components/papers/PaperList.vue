@@ -1,4 +1,5 @@
 <script lang="ts">
+
 export type Papers = {
   body: string
   content: string
@@ -54,7 +55,9 @@ export default {
     async fetchData() {
       this.papers = await (await fetch(this.apiUri)).json()
     }, 
-    openPaper() {}
+    openPaper() {
+
+    },
     date(paperDate: String) {
       const date = new Date(paperDate)
       return new Intl.DateTimeFormat('de-DE', { dateStyle: 'full' }).format(date)

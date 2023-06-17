@@ -1,16 +1,16 @@
 <script lang="ts">
 import MainMenu from './components/MainMenu.vue'
-import Search from './components/Search.vue'
-import Filter from './components/Filter.vue'
-import Papers from './components/Papers.vue'
+import SearchBar from './components/SearchBar.vue'
+import FilterView from './components/papers/FilterView.vue'
+import PaperList from './components/papers/PaperList.vue'
 import FooterMenu from './components/FooterMenu.vue'
 
 export default {
   components: {
     MainMenu,
-    Search,
-    Filter,
-    Papers,
+    SearchBar,
+    FilterView,
+    PaperList,
     FooterMenu,
   },
   data() {
@@ -37,18 +37,18 @@ export default {
       <h1 class="p-2 text-xl">{{ applicationName }} {{ cityName }}</h1>
       <MainMenu />
     </div>
-    <Search
+    <SearchBar
       @searchSubmit="(type) => search.type = type"
       @searchQuery="(query) => search.value = query"
     />
   </header>
 
   <main class="flex flex-row max-w-5xl m-auto">
-    <Filter
+    <FilterView
       @paperFilter="(filter) => paperFilter = filter"
       :papers="papers"
     />
-    <Papers
+    <PaperList
       @papers="(p) => papers = p"
       :paperQuery="search"
       :paperFilter="paperFilter"
