@@ -48,13 +48,17 @@ export default {
         })
       }
       return filteredPapers
-    }
+    }, 
   },
   methods: {
     async fetchData() {
       this.papers = await (await fetch(this.apiUri)).json()
     }, 
     openPaper() {}
+    date(paperDate: String) {
+      const date = new Date(paperDate)
+      return new Intl.DateTimeFormat('de-DE', { dateStyle: 'full' }).format(date)
+    },
   },
 }
 </script>
@@ -74,7 +78,7 @@ export default {
         @click.prevent="openPaper()"
       >
         <h4 class="text-xl">{{ paper.name }}</h4>
-        <p>{{ paper.published_at }}: {{ paper.paper_type}} von {{ paper.originator }}</p>
+        <p>{{ date(paper.published_at) }}: <a :href="paper.url" class="text-secondary-button-500">{{ paper.paper_type}} von {{ paper.originator }}</a></p>
       </article>
     </li>
   </ul>
