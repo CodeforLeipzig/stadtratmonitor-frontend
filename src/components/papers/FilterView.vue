@@ -84,7 +84,7 @@ export default {
     <fieldset class="flex flex-row mb-4">
       <legend>Kategorie</legend>
       <select
-        class="w-40 p-2 bg-background-100: dark:bg-background-900 rounded-lg"
+        class="w-40 p-2 bg-background-100 dark:bg-background-900 rounded-lg"
         v-model="paperFilter.type">
         <option
           v-for="(type, i) of paperTypes"
@@ -103,7 +103,7 @@ export default {
     <fieldset class="flex flex-row mb-4">
       <legend>Einreicher</legend>
       <select 
-        class="w-40 p-2 bg-background-100: dark:bg-background-900 rounded-lg"
+        class="w-40 p-2 bg-background-100 dark:bg-background-900 rounded-lg"
         v-model="paperFilter.originator">
         <option v-for="(originator, i) of paperOriginators" :key="i">{{ originator }}</option>
       </select>
