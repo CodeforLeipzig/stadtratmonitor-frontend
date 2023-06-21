@@ -2,16 +2,20 @@
 export default {
   data() {
     return {
-      menuEntries: this.mainMenuEntries,
+      entries: this.mainMenuEntries
     }
-  }, 
+  }
 }
 </script>
 
 <template>
   <ul class="flex flex-row place-content-center">
-    <li class="p-2 place-content-center" v-for="(entry, i) of menuEntries" :key="i">
-      <a :href="entry.uri">{{ entry.name }}</a>
+    <li
+      class="p-2 place-content-center"
+      v-for="(entry, i) of entries"
+      :key="i"
+    >
+      <RouterLink :to="entry.uri">{{ entry.name }}</RouterLink>
     </li>
   </ul>
 </template>

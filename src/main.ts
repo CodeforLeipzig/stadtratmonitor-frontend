@@ -1,7 +1,8 @@
-import './assets/main.css'
+import '@/assets/main.css'
 
 import { createApp } from 'vue'
-import App from './App.vue'
+import App from '@/App.vue'
+import router from '@/router'
 
 const app = createApp(App)
 
@@ -10,10 +11,10 @@ app.config.globalProperties = {
   apiUri: 'https://joergreichert.de/srm/input.json',
   applicationName: 'Stadtratmonitor',
   cityName: 'Leipzig',
-  mainMenuEntries: {
+    mainMenuEntries: {
     0: {
-      name: 'Startseite',
-      uri: '/',
+      name: 'Themen',
+      uri: '/themen',
     }, 
     1: {
       name: 'Karte',
@@ -36,4 +37,4 @@ app.config.globalProperties = {
   },
 }
 
-app.mount('#app')
+app.use(router).mount('#app')

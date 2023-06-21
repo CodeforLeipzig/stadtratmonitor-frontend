@@ -1,31 +1,9 @@
 <script lang="ts">
-
-export type Papers = {
-  body: string
-  content: string
-  name: string
-  resolution: string
-  originator: string
-  paper_type: string
-  published_at: string
-  reference: string
-  url: string
-}
+import { type Papers } from '@/App.vue'
 
 export default {
-  created() {
-    this.fetchData()
-  },
-  updated() {
-    this.$emit('papers', this.papers)
-  },
-  data() {
-    return {
-      apiUri: 'https://raw.githubusercontent.com/CodeforLeipzig/stadtratmonitor/master/input.json', 
-      papers: [] as Papers[],
-    }
-  }, 
   props: {
+    papers: Array<any>,
     paperQuery: Object,
     paperFilter: Object,
   },
@@ -52,9 +30,6 @@ export default {
     }, 
   },
   methods: {
-    async fetchData() {
-      this.papers = await (await fetch(this.apiUri)).json()
-    }, 
     openPaper() {
 
     },

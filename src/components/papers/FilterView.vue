@@ -1,6 +1,4 @@
 <script lang="ts">
-import { type Papers } from './PaperList.vue'
-
 export default {
   updated() {
     this.$emit('paperFilter', this.paperFilter)
@@ -63,11 +61,11 @@ export default {
     }
   },
   props: {
-    papers: Array<Papers>,
+    papers: Array<any>,
   },
   computed: {
     paperOriginators() {
-      return [...new Set(this.papers?.map((paper: Papers) => paper.originator))].sort()
+      return [...new Set(this.papers?.map((paper: any) => paper.originator))].sort()
     },
     /* paperType() {
       return this.paperTypes.filter((type) => type.key == )
