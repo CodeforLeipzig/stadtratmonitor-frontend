@@ -1,33 +1,39 @@
 <script lang="ts">
 import FilterView from '@/components/papers/FilterView.vue'
-import PaperList from '@/components/papers/PaperList.vue'
+import TopicList from '@/components/papers/TopicList.vue'
 
 export default {
   components: {
     FilterView,
-    PaperList,
-  },
-  data() {
-    return {
-      papers: this.papers,
-    }
+    TopicList,
   },
   computed: {
     topics() {
-      return [...new Set(this.papers?.map((paper: any) => paper.reference))]
-    }
+      const topicReferences = [...new Set(this.papers?.map((paper: any) => paper.reference))]
+      return topicReferences.map( (entry: any) => {
+        return {
+          'ref': entry, 
+          'paper': this.papers?.find( (paper: any) => paper.reference == entry)
+        }
+      })
+    }, 
+  }, 
+  props: {
+    papers: Array,
+    search: Object,
+    filter: Object,
   }
 }
 </script>
 
 <template>
   <FilterView
-    @paperFilter="(filter) => paperFilter = filter"
-    :papers="papers"
-  />
-  <PaperList
-    :paperQuery="search"
-    :paperFilter="paperFilter"
-  />
-  {{ topics }}
+      @filter="(filter: any) => filter = filter"
+      :papers="papers"
+    />
+  <TopicList
+    :topics="topics"
+    :search="search"
+    :filter="filter"
+  ></TopicList>
 </template>

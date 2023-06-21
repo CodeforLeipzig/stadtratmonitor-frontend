@@ -1,6 +1,7 @@
 <script lang="ts">
 import MainMenu from '@/components/MainMenu.vue'
 import SearchBar from '@/components/SearchBar.vue'
+import FilterView from './components/papers/FilterView.vue'
 import FooterMenu from '@/components/FooterMenu.vue'
 
 export type Papers = {
@@ -19,6 +20,7 @@ export default {
   components: {
     MainMenu,
     SearchBar,
+    FilterView,
     FooterMenu,
   },
   data() {
@@ -29,12 +31,15 @@ export default {
         value: '',
         type: '',
       },
-      apiUri: 'https://raw.githubusercontent.com/CodeforLeipzig/stadtratmonitor/master/input.json', 
-      papers: [] as Papers[],
-      paperFilter: {
-        type: '',
+      filter: {
+        type: {
+          key: '',
+          value: '',
+        },
         originator: '',
       },
+      apiUri: 'https://raw.githubusercontent.com/CodeforLeipzig/stadtratmonitor/master/input.json', 
+      papers: [] as Papers[],
     }
   },
   methods: {
@@ -64,7 +69,11 @@ export default {
   <main class="flex flex-row max-w-5xl m-auto">
 
   </main>
-    <RouterView :papers="papers"></RouterView>
+    <RouterView
+      :papers="papers"
+      :search="search"
+      :filter="filter"
+    ></RouterView>
   <footer>
     <!-- <FooterMenu /> -->
   </footer>

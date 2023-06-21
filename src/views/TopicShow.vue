@@ -8,6 +8,9 @@ export default {
       this.papers?.find( (paper: any) => paper.reference == this.topicId )
     }
   },
+  props: {
+    papers: Array,
+  },
 }
 </script>
 

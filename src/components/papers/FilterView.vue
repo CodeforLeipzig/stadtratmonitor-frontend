@@ -1,7 +1,7 @@
 <script lang="ts">
 export default {
   updated() {
-    this.$emit('paperFilter', this.paperFilter)
+    this.$emit('filter', this.filter)
   },
   data() {
     return {
@@ -51,7 +51,7 @@ export default {
           key: 'WA',
         },
       ],
-      paperFilter: {
+      filter: {
         type: {
           key: '',
           value: '',
@@ -83,7 +83,7 @@ export default {
       <legend>Kategorie</legend>
       <select
         class="w-40 p-2 bg-background-100 dark:bg-background-900 rounded-lg"
-        v-model="paperFilter.type">
+        v-model="filter.type">
         <option
           v-for="(type, i) of paperTypes"
           :key="i"
@@ -93,7 +93,7 @@ export default {
       </select>
       <button 
         class="pl-2"
-        @click.prevent="paperFilter.type = { key: '', value: ''}"
+        @click.prevent="filter.type = { key: '', value: ''}"
         title="zurücksetzen"
         >✖
       </button>
@@ -102,12 +102,12 @@ export default {
       <legend>Einreicher</legend>
       <select 
         class="w-40 p-2 bg-background-100 dark:bg-background-900 rounded-lg"
-        v-model="paperFilter.originator">
+        v-model="filter.originator">
         <option v-for="(originator, i) of paperOriginators" :key="i">{{ originator }}</option>
       </select>
       <button 
         class="pl-2"
-        @click.prevent="paperFilter.originator = ''"
+        @click.prevent="filter.originator = ''"
         title="zurücksetzen"
         >✖
       </button>
