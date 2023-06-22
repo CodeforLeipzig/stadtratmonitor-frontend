@@ -7,6 +7,7 @@ const routes: Array<any> = [
         path: '/themen/', 
         name: 'topics',
         component: ()=>import("@/views/TheTopics.vue"),
+        props: { topics: true },
     },
     { path: '/themen/:reference', name: 'topics.show', component: ()=>import("@/views/TopicsShow.vue") },
     { path: '/karte', name: 'map', component: ()=>import("@/views/TheMap.vue") },

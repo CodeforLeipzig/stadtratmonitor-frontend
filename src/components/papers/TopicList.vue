@@ -5,18 +5,18 @@ export default {
   props: {
     search: Object,
     filter: Object,
-    topics: Object,
+    topics: Array<Object>,
   },
   computed: {
-    filteredData() {
+    filteredData(): Array<Object> {
       const paperQuery: String = this.search?.value
-      let filteredTopics: any = this.topics?.paper
-      if (paperQuery !== '') {
-        filteredTopics = this.topics?.paper.filter((paper: any) => {
-          return paper.name.toLowerCase().includes(paperQuery.toLowerCase()) || paper.content.toLowerCase().includes(paperQuery.toLowerCase()) || paper.reference.toLowerCase().includes(paperQuery.toLowerCase())
-        })
-      }
-      if (this.filter?.type !== '') {
+      let filteredTopics: Array<Object> = this.topics as Array<Object>
+      /* if (paperQuery !== '') {
+        filteredTopics = this.topics?.filter((topic: Object) => {
+          return topic.papers?.filter().name.toLowerCase().includes(paperQuery.toLowerCase()) || paper.content.toLowerCase().includes(paperQuery.toLowerCase()) || paper.reference.toLowerCase().includes(paperQuery.toLowerCase())
+        }) as Array<Object>
+      } */
+/*       if (this.filter?.type !== '') {
         filteredTopics = filteredTopics.filter((topic: any) => {
           return topic.reference.includes(this.filter?.type.key) && topic.paper_type.includes(this.filter?.type.value)
         })
@@ -25,7 +25,7 @@ export default {
         filteredTopics = filteredTopics.filter((topic: any) => {
           return topic.originator.includes(this.filter?.originator)
         })
-      }
+      } */
       return filteredTopics
     }, 
   },
@@ -37,26 +37,31 @@ export default {
       const date = new Date(paperDate)
       return new Intl.DateTimeFormat('de-DE', { dateStyle: 'full' }).format(date)
     },
+    filteredDataLength(): Number {
+      return Object.keys(this.filteredData).length
+    },
   },
 }
 </script>
 
 <template>
+  {{ topics }}
   <ul
-    v-if="filteredData"
+    v-if="filteredDataLength"
     class="w-full grid grid-flow-row gap-2 my-2"
   >
-    <p>Wir konnten {{ filteredData.length }} Einträge finden</p>
+    <p>Wir konnten {{ filteredDataLength }} Einträge finden</p>
+    {{ filteredData }}
     <li 
-      v-for="(paper, i) in filteredData"
+      v-for="(topic, i) in filteredData"
       :key="i"
     >
       <article
         class="p-4 rounded-lg bg-background-100 dark:bg-background-900"
         @click.prevent="openPaper()"
       >
-        <h4 class="text-xl">{{ paper.name }}</h4>
-        <p>{{ date(paper.published_at) }}: <a :href="paper.url" class="text-secondary-button-500">{{ paper.paper_type}} von {{ paper.originator }}</a></p>
+        <h4 class="text-xl">{{ topic }}</h4>
+        <p>{{ date(topic.papers[0].published_at) }}: <a :href="topic.papers[0].url" class="text-secondary-button-500">{{ paper.paper_type}} von {{ paper.originator }}</a></p>
       </article>
     </li>
   </ul>

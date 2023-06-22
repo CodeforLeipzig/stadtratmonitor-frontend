@@ -8,12 +8,12 @@ export default {
     TopicList,
   },
   computed: {
-    topics() {
+    topics(): Array<Object> {
       const topicReferences = [...new Set(this.papers?.map((paper: any) => paper.reference))]
-      return topicReferences.map( (entry: any) => {
+      return topicReferences.map( (ref: String) => {
         return {
-          'ref': entry, 
-          'paper': this.papers?.find( (paper: any) => paper.reference == entry)
+          'ref': ref, 
+          'papers': this.papers?.filter( (paper: any) => paper.reference === ref) as Object,
         }
       })
     }, 

@@ -67,13 +67,12 @@ export default {
   </header>
 
   <main class="flex flex-row max-w-5xl m-auto">
-
-  </main>
     <RouterView
       :papers="papers"
       :search="search"
       :filter="filter"
     ></RouterView>
+  </main>
   <footer>
     <!-- <FooterMenu /> -->
   </footer>
