@@ -8,10 +8,7 @@ const app = createApp(App)
 
 app.config.globalProperties = {
   ...app.config.globalProperties,
-  apiUri: 'https://joergreichert.de/srm/input.json',
-  applicationName: 'Stadtratmonitor',
-  cityName: 'Leipzig',
-    mainMenuEntries: {
+  mainMenuEntries: {
     0: {
       name: 'Themen',
       uri: '/themen',

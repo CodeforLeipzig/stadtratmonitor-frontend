@@ -1,39 +1,31 @@
-<script lang="ts">
-import FilterView from '@/components/papers/FilterView.vue'
+<script setup lang="ts">
+import type { Topic, Paper, Search, Filter } from '@/types'
+import { papers } from '@/store'
+import { computed } from 'vue';
+import FilterSidebar from '@/components/papers/FilterSidebar.vue'
 import TopicList from '@/components/papers/TopicList.vue'
 
-export default {
-  components: {
-    FilterView,
-    TopicList,
-  },
-  computed: {
-    topics(): Array<Object> {
-      const topicReferences = [...new Set(this.papers?.map((paper: any) => paper.reference))]
-      return topicReferences.map( (ref: String) => {
-        return {
-          'ref': ref, 
-          'papers': this.papers?.filter( (paper: any) => paper.reference === ref) as Object,
-        }
-      })
-    }, 
-  }, 
-  props: {
-    papers: Array,
-    search: Object,
-    filter: Object,
-  }
-}
+const props = defineProps<{
+  search: Search,
+  filter: Filter,
+}>()
+const topics = computed(() => {
+  const topicReferences = [...new Set(papers.papers?.map((paper: Paper) => paper.reference))]
+  return topicReferences.map( (reference: string) => {
+    return {
+      'reference': reference, 
+      'papers': papers.papers?.filter( (paper: Paper) => paper.reference === reference),
+    }
+  }) as Array<Topic>
+})
 </script>
 
 <template>
-  <FilterView
-      @filter="(filter: any) => filter = filter"
-      :papers="papers"
-    />
+  <FilterSidebar
+    @filter="(filter: Filter) => filter = filter"
+  />
   <TopicList
-    :topics="topics"
-    :search="search"
-    :filter="filter"
-  ></TopicList>
+    :searchProp="search"
+    :filterProp="filter"
+  />
 </template>
