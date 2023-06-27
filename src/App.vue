@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Paper, Search, Filter } from '@/types'
-import { papers, topics, papersfetch } from '@/store'
+import { state, papersFetch } from '@/store'
 import MainMenu from '@/components/MainMenu.vue'
 import SearchBar from '@/components/SearchBar.vue'
 import FilterView from './components/papers/FilterView.vue'
@@ -20,8 +20,7 @@ let filter: Filter = {
   },
   originator: '',
 }
-onMounted (() => papersfetch() )
-/* onMounted(() => topics.process() ) */
+onMounted (() => papersFetch() )
 </script>
 
 <template>
@@ -42,7 +41,7 @@ onMounted (() => papersfetch() )
   </header>
 
   <main class="flex flex-row max-w-5xl m-auto">
-    {{ papers }}
+    {{ state.topics }}
     <RouterView
       :search="search"
       :filter="filter"
