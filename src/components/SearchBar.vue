@@ -36,5 +36,4 @@ onUpdated(() => updateSearch(searchValue, searchType))
       </div>
     </div>
   </form>
-  {{ searchValue + searchType }}
 </template>

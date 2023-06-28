@@ -13,7 +13,7 @@ interface State {
 export const state: State = reactive({
   papers: [],
   topics: [],
-  search: { value: ref(), type: ref() },
+  search: { value: '', type: '' },
   filter: [],
 })
 
@@ -33,8 +33,8 @@ export function getTopics() {
 
 export function updateSearch(searchValue: Ref, searchType: Ref) {
   state.search = {
-    value: searchValue,
-    type: searchType,
+    value: searchValue.value,
+    type: searchType.value,
   }
 }
 

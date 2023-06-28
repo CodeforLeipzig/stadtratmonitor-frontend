@@ -6,13 +6,19 @@ import { computed, onMounted, onUpdated } from 'vue';
 const filteredData = computed(() => {
   const searchValue: string = state.search.value;
   let filteredTopics = state.topics
-  if (state.search.value !== '') {
+  let testi = null
+  
+  if (searchValue !== '') {
     filteredTopics = state.topics?.filter((topic: Topic) => {
       return topic.papers?.filter((paper) => {
-        paper.name.toLowerCase().includes(searchValue.toLowerCase()) /* || paper.content.toLowerCase().includes(searchValue.toLowerCase()) || paper.reference.toLowerCase().includes(searchValue.toLowerCase()) */
+        paper.name.toLowerCase().includes(searchValue.toLowerCase())
+        // || paper.content.toLowerCase().includes(searchValue.toLowerCase())
+        // || paper.reference.toLowerCase().includes(searchValue.toLowerCase())
+        testi = paper.name.toLowerCase().includes(searchValue.toLowerCase())
       })
     })
   }
+  console.log(testi)
   /* if (this.filter?.type !== '') {
     filteredTopics = filteredTopics.filter((topic: any) => {
       return topic.reference.includes(this.filter?.type.key) && topic.paper_type.includes(this.filter?.type.value)
@@ -43,7 +49,7 @@ onUpdated(() => {
 </script>
 
 <template>
-  {{ state.search.value }}
+  {{ filteredData }}
   <ul
     v-if="filteredDataLength > 0"
     class="w-full grid grid-flow-row gap-2 my-2"
