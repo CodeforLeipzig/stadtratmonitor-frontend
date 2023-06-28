@@ -1,3 +1,5 @@
+import type { Ref } from "vue";
+
 export interface Topic {
   reference: string,
   papers: Array<Paper>,
@@ -16,8 +18,8 @@ export interface Paper {
 }
 
 export interface Search {
-  value: string,
-  type: string,
+  value: Ref,
+  type: Ref,
 }
 
 export interface Filter {

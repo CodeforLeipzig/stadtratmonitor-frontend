@@ -1,23 +1,11 @@
-<script lang="ts">
-export default {
-  updated() {
-    this.$emit('searchQuery', this.search.value)
-  },
-  data() {
-    return {
-      search: {
-        value: '',
-        type: '',
-      },
-    }
-  },
-  methods: {
-    submit(type: string) {
-      this.search.type = type
-      this.$emit('searchSubmit', this.search.type)
-    }
-  },
-}
+<script setup lang="ts">
+import { updateSearch } from '@/stores';
+import { onUpdated, ref } from 'vue';
+
+let searchValue = ref('')
+let searchType = ref('')
+function submit(type: string) { searchType = ref(type) }
+onUpdated(() => updateSearch(searchValue, searchType))
 </script>
 
 <template>
@@ -27,7 +15,7 @@ export default {
         class="p-6 grow bg-transparent placeholder:text-text-300 dark:placeholder:text-text-700 text-2xl text-center focus-visible:outline focus-visible:outline-current"
         type="search"
         placeholder="z. B. Thema, Name, VII-EF-08640, …"
-        v-model="search.value"
+        v-model="searchValue"
         @keyup.alt.enter.exact="submit('assist')"
         @keyup.enter.exact="submit('filter')"
         />
@@ -48,4 +36,5 @@ export default {
       </div>
     </div>
   </form>
+  {{ searchValue + searchType }}
 </template>

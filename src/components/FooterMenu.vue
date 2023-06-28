@@ -1,21 +1,24 @@
-<script lang="ts">
-export default {
-  data() {
-    return {
-      menuEntries: this.footerMenuEntries,
-    }
+<script setup lang="ts">
+const entries = {
+  0: {
+    name: 'Impressum',
+    uri: '/impressum',
   }, 
+  1: {
+    name: 'Über diese Seite',
+    uri: '/über',
+  },
 }
 </script>
 
 <template>
   <ul class="flex flex-row place-content-center">
     <li
-      v-for="{entry, i} of menuEntries"
-      :key="i"
       class="p-2 place-content-center"
+      v-for="{entry, i} of entries"
+      :key="i"
     >
-      <a :href="entry.uri">{{ entry.name }}</a>
+      <RouterLink :to="entry.uri">{{ entry.name }}</RouterLink>
     </li>
   </ul>
 </template>

@@ -1,49 +1,51 @@
 <script setup lang="ts">
-import type { Topic, Search, Filter } from '@/types'
-import { computed } from 'vue';
+import { state } from '@/stores'
+import type { Topic } from '@/types';
+import { computed, onMounted, onUpdated } from 'vue';
 
-const props = defineProps<{
-  topics: Array<Topic>,
-  search: Search,
-  filter: Filter,
-}>()
 const filteredData = computed(() => {
-  //const searchValue: string = search['value'];
-  let filteredTopics = props.topics
-  /* if (searchValue !== '') {
-    filteredTopics = this.topics?.filter((topic: Object) => {
-      return topic.papers?.filter().name.toLowerCase().includes(searchValue.toLowerCase()) || paper.content.toLowerCase().includes(searchValue.toLowerCase()) || paper.reference.toLowerCase().includes(searchValue.toLowerCase())
-    }) as Array<Object>
-  } */
-/*       if (this.filter?.type !== '') {
+  const searchValue: string = state.search.value;
+  let filteredTopics = state.topics
+  if (state.search.value !== '') {
+    filteredTopics = state.topics?.filter((topic: Topic) => {
+      return topic.papers?.filter((paper) => {
+        paper.name.toLowerCase().includes(searchValue.toLowerCase()) /* || paper.content.toLowerCase().includes(searchValue.toLowerCase()) || paper.reference.toLowerCase().includes(searchValue.toLowerCase()) */
+      })
+    })
+  }
+  /* if (this.filter?.type !== '') {
     filteredTopics = filteredTopics.filter((topic: any) => {
       return topic.reference.includes(this.filter?.type.key) && topic.paper_type.includes(this.filter?.type.value)
     })
-  }
-  if (this.filter?.originator !== '') {
+  } */
+  /* if (this.filter?.originator !== '') {
     filteredTopics = filteredTopics.filter((topic: any) => {
       return topic.originator.includes(this.filter?.originator)
     })
   } */
   return filteredTopics
 })
-const filteredDataLength = computed(() => {
-  if (filteredData.value !== undefined) {
-    return Object.keys(filteredData).length
-  } else {
-    return 0
-  }
-})
+let filteredDataLength: number = 0
 
-function date(paperDate: Date) {
+function objectLength(data: any) {
+  return Object.keys(data).length
+}
+function date(paperDate: string) {
   const date = new Date(paperDate)
   return new Intl.DateTimeFormat('de-DE', { dateStyle: 'full' }).format(date)
 }
+onMounted(() => {
+  filteredDataLength = objectLength(filteredData)
+})
+onUpdated(() => {
+  filteredDataLength = objectLength(filteredData)
+})
 </script>
 
 <template>
+  {{ state.search.value }}
   <ul
-    v-if="filteredDataLength"
+    v-if="filteredDataLength > 0"
     class="w-full grid grid-flow-row gap-2 my-2"
   >
     <p>Wir konnten {{ filteredDataLength }} Einträge finden</p>
@@ -55,15 +57,15 @@ function date(paperDate: Date) {
         class="p-4 rounded-lg bg-background-100 dark:bg-background-900"
       >
         <h4 class="text-xl">{{ topic.papers[0].name }}</h4>
-        <!-- <p>{{ date(topic.papers[0].published_at) }}: <a :href="topic.papers[0].url" class="text-secondary-button-500">{{ paper.paper_type}} von {{ paper.originator }}</a></p> -->
+        <p>{{ date(topic.papers[0].published_at) }}: <a :href="topic.papers[0].url" class="text-secondary-button-500">{{ topic.papers[0].paper_type}} von {{ topic.papers[0].originator }}</a></p>
       </article>
     </li>
   </ul>
-<!--   <p
+  <p
     class="flex place-content-center my-60 text-lg"
-    v-else-if="topics?.length"
+    v-else-if="state.topics?.length"
     >Für dieses Anfrage liegen uns keine Ergebnisse vor.
-  </p> -->
+  </p>
   <p
     class="flex place-content-center my-60 text-lg"
     v-else

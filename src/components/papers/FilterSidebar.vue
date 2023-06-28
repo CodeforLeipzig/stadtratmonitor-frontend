@@ -1,13 +1,8 @@
 <script setup lang="ts">
 import type { Paper, Filter } from '@/types'
+import { state, updateFilter } from '@/stores';
 import { computed, onUpdated } from 'vue';
-import { useRoute } from 'vue-router';
 
-const route = useRoute()
-
-const props = defineProps<{
-  papers: Array<Paper>,
-}>()
 const paperTypes = [
   {
     value: 'Anfrage',
@@ -52,13 +47,13 @@ const filter: Filter = {
   originator: '',
 }
 const paperOriginators = computed(() => {
-  return [...new Set(props.papers?.map((paper: Paper) => paper.originator))].sort()
+  return [...new Set(state.papers?.map((paper: Paper) => paper.originator))].sort()
 })
 /* const paperType = computed(() => {
   return paperTypes.filter((type) => type.key == )
 }) */
 onUpdated(() => {
-  route.$emit('filter', filter)
+  updateFilter(filter.type.key, filter.type.value, filter.originator)
 })
 </script>
 

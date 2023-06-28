@@ -1,10 +1,17 @@
-<script lang="ts">
-export default {
-  data() {
-    return {
-      entries: this.mainMenuEntries
-    }
-  }
+<script setup lang="ts">
+const entries = {
+  0: {
+    name: 'Themen',
+    uri: '/themen',
+  }, 
+  1: {
+    name: 'Karte',
+    uri: '/karte',
+  },
+  2: {
+    name: 'Dokumentation', 
+    uri: '/doku',
+  },
 }
 </script>
 

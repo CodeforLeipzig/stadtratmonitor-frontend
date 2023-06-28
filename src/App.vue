@@ -1,26 +1,17 @@
 <script setup lang="ts">
-import type { Paper, Search, Filter } from '@/types'
-import { state, papersFetch } from '@/store'
+import { state, fetchPapers, getTopics } from '@/stores'
 import MainMenu from '@/components/MainMenu.vue'
 import SearchBar from '@/components/SearchBar.vue'
-import FilterView from './components/papers/FilterView.vue'
-import FooterMenu from '@/components/FooterMenu.vue'
+/* import FooterMenu from '@/components/FooterMenu.vue' */
 import { onMounted } from 'vue'
 
 const applicationName: string = 'Stadtratmonitor'
 const cityName: string = 'Leipzig'
-let search: Search = {
-  value: '',
-  type: '',
-}
-let filter: Filter = {
-  type: {
-    key: '',
-    value: '',
-  },
-  originator: '',
-}
-onMounted (() => papersFetch() )
+
+onMounted (async () => {
+  await fetchPapers()
+  getTopics()
+})
 </script>
 
 <template>
@@ -34,18 +25,11 @@ onMounted (() => papersFetch() )
       </h1>
       <MainMenu />
     </div>
-    <SearchBar
-      @searchSubmit="(type) => search.type = type"
-      @searchQuery="(query) => search.value = query"
-    />
+    <SearchBar />
   </header>
 
   <main class="flex flex-row max-w-5xl m-auto">
-    {{ state.topics }}
-    <RouterView
-      :search="search"
-      :filter="filter"
-      >
+    <RouterView>
     </RouterView>
   </main>
   <footer>
