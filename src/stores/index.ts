@@ -7,14 +7,14 @@ interface State {
   papers: Paper[],
   topics: Topic[],
   search: Search,
-  filter: Filter[],
+  filter: Filter,
 }
 
 export const state: State = reactive({
   papers: [],
   topics: [],
   search: { value: '', type: '' },
-  filter: [],
+  filter: { type: { key: '', value: '' }, originator: '',},
 })
 
 export async function fetchPapers() {
@@ -38,12 +38,12 @@ export function updateSearch(searchValue: Ref, searchType: Ref) {
   }
 }
 
-export function updateFilter(typeKey: string, typeValue: string, originator: string) {
-  state.filter = [{
+export function updateFilter(typeKey: Ref, typeValue: Ref, originator: Ref) {
+  state.filter = {
     type: {
-      key: typeKey,
-      value: typeValue,
+      key: typeKey.value,
+      value: typeValue.value,
     },
-    originator: originator,
-  }]
+    originator: originator.value,
+  }
 }

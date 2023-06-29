@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Paper, Filter } from '@/types'
 import { state, updateFilter } from '@/stores';
-import { computed, onUpdated } from 'vue';
+import { computed, onUpdated, reactive, ref } from 'vue';
 
 const paperTypes = [
   {
@@ -39,21 +39,28 @@ const paperTypes = [
     key: 'WA',
   },
 ]
-const filter: Filter = {
-  type: {
-    key: '',
-    value: '',
-  },
-  originator: '',
-}
+let filterTypeKey = ref('')
+let filterTypeValue = ref('')
+let filterType = reactive({
+  key: filterTypeKey.value,
+  value: filterTypeValue.value,
+})
+let filterOriginator = ref('')
+
 const paperOriginators = computed(() => {
   return [...new Set(state.papers?.map((paper: Paper) => paper.originator))].sort()
 })
 /* const paperType = computed(() => {
   return paperTypes.filter((type) => type.key == )
 }) */
+function resetFilterType() {
+  filterType = { key: '', value: '' }
+}
+function resetFilterOriginator() {
+  filterOriginator.value = ''
+}
 onUpdated(() => {
-  updateFilter(filter.type.key, filter.type.value, filter.originator)
+  updateFilter(filterTypeKey, filterTypeValue, filterOriginator)
 })
 </script>
 
@@ -63,7 +70,7 @@ onUpdated(() => {
       <legend>Kategorie</legend>
       <select
         class="w-40 p-2 bg-background-100 dark:bg-background-900 rounded-lg"
-        v-model="filter.type"
+        v-model="filterType"
         >
         <option
           v-for="(type, i) of paperTypes"
@@ -74,7 +81,7 @@ onUpdated(() => {
       </select>
       <button 
         class="pl-2"
-        @click.prevent="filter.type = { key: '', value: ''}"
+        @click.prevent="resetFilterType()"
         title="zurücksetzen"
         >✖
       </button>
@@ -83,7 +90,7 @@ onUpdated(() => {
       <legend>Einreicher</legend>
       <select 
         class="w-40 p-2 bg-background-100 dark:bg-background-900 rounded-lg"
-        v-model="filter.originator">
+        v-model="filterOriginator">
         <option
           v-for="(originator, i) of paperOriginators"
           :key="i"
@@ -92,7 +99,7 @@ onUpdated(() => {
       </select>
       <button 
         class="pl-2"
-        @click.prevent="filter.originator = ''"
+        @click.prevent="resetFilterOriginator()"
         title="zurücksetzen"
         >✖
       </button>

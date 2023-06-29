@@ -1,34 +1,52 @@
 <script setup lang="ts">
 import { state } from '@/stores'
-import type { Topic } from '@/types';
+import type { Paper, Topic } from '@/types';
 import { computed, onMounted, onUpdated } from 'vue';
 
 const filteredData = computed(() => {
-  const searchValue: string = state.search.value;
+  const searchValue: string = state.search.value
+  const filterTypeKey: string = state.filter.type.key
+  const filterTypeValue: string = state.filter.type.value
+  const filterOriginator: string = state.filter.originator
   let filteredTopics = state.topics
 
   if (searchValue !== '') {
-    filteredTopics = state.topics?.filter((topic: Topic) => {
+    filteredTopics = filteredTopics.filter((topic: Topic) => {
       let includes = false
-      topic.papers?.filter((paper) => {
-        if (paper.name.toLowerCase().includes(searchValue.toLowerCase())
-        || paper.content.toLowerCase().includes(searchValue.toLowerCase())
-        || paper.reference.toLowerCase().includes(searchValue.toLowerCase())
-        ) { includes = true}
+
+      topic.papers?.filter((paper: Paper) => {
+        if (
+          paper.name.toLowerCase().includes(searchValue.toLowerCase())
+          || paper.content.toLowerCase().includes(searchValue.toLowerCase())
+          || paper.reference.toLowerCase().includes(searchValue.toLowerCase())
+        ) { includes = true }
       })
       return includes
     })
   }
-  /* if (this.filter?.type !== '') {
-    filteredTopics = filteredTopics.filter((topic: any) => {
-      return topic.reference.includes(this.filter?.type.key) && topic.paper_type.includes(this.filter?.type.value)
+  if (filterTypeKey !== '') {
+    filteredTopics = filteredTopics.filter((topic: Topic) => {
+      let includes = false
+
+      topic.papers?.filter((paper: Paper) => {
+        if (
+          paper.reference.toLowerCase().includes(filterTypeKey.toLowerCase())
+          && paper.paper_type.toLowerCase().includes(filterTypeValue.toLowerCase())
+        ) { includes = true }
+      })
+      return includes
     })
-  } */
-  /* if (this.filter?.originator !== '') {
-    filteredTopics = filteredTopics.filter((topic: any) => {
-      return topic.originator.includes(this.filter?.originator)
+  }
+  if (filterOriginator !== '') {
+    filteredTopics = filteredTopics.filter((topic: Topic) => {
+      let includes = false
+
+      topic.papers?.filter((paper: Paper) => {
+        if (paper.originator.toLocaleLowerCase().includes(filterOriginator.toLocaleLowerCase())) { includes = true }
+      })
+      return includes
     })
-  } */
+  }
   return filteredTopics
 })
 let filteredDataLength: number = 0

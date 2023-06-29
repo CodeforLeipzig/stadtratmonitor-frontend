@@ -4,6 +4,7 @@ import { onUpdated, ref } from 'vue';
 
 let searchValue = ref('')
 let searchType = ref('')
+
 function submit(type: string) { searchType = ref(type) }
 onUpdated(() => updateSearch(searchValue, searchType))
 </script>
