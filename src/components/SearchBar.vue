@@ -11,8 +11,10 @@ onUpdated(() => updateSearch(searchValue, searchType))
 
 <template>
   <form class="sticky top-0 flex flex-row place-content-center">
+    <label class="hidden" for="searchBar">Suche</label>
     <div class="flex flex-row w-full max-w-5xl">
       <input
+        id="searchBar"
         class="p-6 grow bg-transparent placeholder:text-text-300 dark:placeholder:text-text-700 text-2xl text-center focus-visible:outline focus-visible:outline-current"
         type="search"
         placeholder="z. B. Thema, Name, VII-EF-08640, …"

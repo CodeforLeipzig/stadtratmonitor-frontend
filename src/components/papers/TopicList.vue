@@ -79,8 +79,15 @@ onUpdated(() => {
       <article
         class="p-4 rounded-lg bg-background-100 dark:bg-background-900"
       >
-        <h4 class="text-xl">{{ topic.papers[0].name }}</h4>
-        <p>{{ date(topic.papers[0].published_at) }}: <a :href="topic.papers[0].url" class="text-secondary-button-500">{{ topic.papers[0].paper_type}} von {{ topic.papers[0].originator }}</a></p>
+        <p class="text-xl">{{ topic.papers[0].name }}</p>
+        <p>
+          {{ date(topic.papers[0].published_at) }}: 
+          <a 
+            :href="topic.papers[0].url"
+            class="text-secondary-button-600 dark:text-secondary-button-400"
+            >{{ topic.papers[0].paper_type}} von {{ topic.papers[0].originator }}
+          </a>
+        </p>
       </article>
     </li>
   </ul>

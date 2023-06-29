@@ -53,6 +53,7 @@ const paperOriginators = computed(() => {
 /* const paperType = computed(() => {
   return paperTypes.filter((type) => type.key == )
 }) */
+
 function resetFilterType() {
   filterType = { key: '', value: '' }
 }
@@ -66,9 +67,10 @@ onUpdated(() => {
 
 <template>
   <form class="mr-4 mt-4">
-    <fieldset class="flex flex-row mb-4">
-      <legend>Kategorie</legend>
+    <label for="typeSelect">Kategorie</label>
+    <div class="flex flex-row mb-4">
       <select
+        id="typeSelect"
         class="w-40 p-2 bg-background-100 dark:bg-background-900 rounded-lg"
         v-model="filterType"
         >
@@ -85,10 +87,11 @@ onUpdated(() => {
         title="zurücksetzen"
         >✖
       </button>
-    </fieldset>
-    <fieldset class="flex flex-row mb-4">
-      <legend>Einreicher</legend>
+    </div>
+    <label for="originatorSelect">Einreicher</label>
+    <div class="flex flex-row mb-4">
       <select 
+        id="originatorSelect"
         class="w-40 p-2 bg-background-100 dark:bg-background-900 rounded-lg"
         v-model="filterOriginator">
         <option
@@ -103,6 +106,6 @@ onUpdated(() => {
         title="zurücksetzen"
         >✖
       </button>
-    </fieldset>
+    </div>
   </form>
 </template>
