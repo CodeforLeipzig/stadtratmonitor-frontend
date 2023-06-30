@@ -79,7 +79,9 @@ onUpdated(() => {
       <article
         class="p-4 rounded-lg bg-background-100 dark:bg-background-900"
       >
-        <p class="text-xl">{{ topic.papers[0].name }}</p>
+        <RouterLink :to="'themen/' + topic.reference">
+          <p class="text-xl">{{ topic.papers[0].name }}</p>
+        </RouterLink>
         <p>
           {{ date(topic.papers[0].published_at) }}: 
           <a 

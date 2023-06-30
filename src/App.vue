@@ -28,7 +28,7 @@ onMounted (async () => {
     <SearchBar />
   </header>
 
-  <main class="flex flex-row max-w-5xl m-auto">
+  <main class="max-w-5xl m-auto">
     <RouterView>
     </RouterView>
   </main>

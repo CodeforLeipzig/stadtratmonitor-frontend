@@ -13,7 +13,7 @@ const routes: Array<any> = [
   }, {
     path: '/themen/:reference', 
     name: 'topics.show', 
-    component: ()=>import("@/views/TopicsShow.vue")
+    component: ()=>import("@/views/TopicShow.vue")
   }, { 
     path: '/karte', 
     name: 'map', 

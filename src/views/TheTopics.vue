@@ -4,6 +4,10 @@ import TopicList from '@/components/papers/TopicList.vue'
 </script>
 
 <template>
-  <FilterSidebar />
-  <TopicList />
+  <div
+    class="flex flex-row"
+    >
+    <FilterSidebar />
+    <TopicList />
+  </div>
 </template>
