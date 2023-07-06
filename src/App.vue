@@ -26,7 +26,7 @@ onMounted (async () => {
     </div>
   </header>
   
-  <main class="max-w-5xl m-auto">
+  <main class="flex flex-col">
     <RouterView>
     </RouterView>
   </main>

@@ -10,7 +10,7 @@ onUpdated(() => updateSearch(searchValue, searchType));
 </script>
 
 <template>
-  <form class="sticky top-2 flex flex-row place-content-center m-2">
+  <form class="sticky top-2 flex flex-row place-content-center">
     <label class="hidden" for="searchBar">Suche</label>
     <div class="flex flex-row w-full max-w-5xl gap-2">
       <input

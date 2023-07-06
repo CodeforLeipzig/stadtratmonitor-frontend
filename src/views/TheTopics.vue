@@ -7,9 +7,9 @@ import SearchBar from '@/components/SearchBar.vue'
 <template>
   <SearchBar />
   <div
-    class="flex flex-row"
+    class="flex flex-row place-content-center xl:w-3/4 place-self-center"
     >
     <FilterSidebar />
-    <TopicList />
+    <TopicList class="grow" />
   </div>
 </template>
