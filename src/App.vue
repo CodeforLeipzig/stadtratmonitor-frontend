@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { state, fetchPapers, getTopics } from '@/stores'
+import { fetchPapers, getTopics } from '@/stores'
 import MainMenu from '@/components/MainMenu.vue'
-import SearchBar from '@/components/SearchBar.vue'
 /* import FooterMenu from '@/components/FooterMenu.vue' */
 import { onMounted } from 'vue'
 
@@ -25,9 +24,8 @@ onMounted (async () => {
       </h1>
       <MainMenu />
     </div>
-    <SearchBar />
   </header>
-
+  
   <main class="max-w-5xl m-auto">
     <RouterView>
     </RouterView>

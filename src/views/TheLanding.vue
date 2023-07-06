@@ -1,6 +1,7 @@
 <script setup lang="ts">
+  import TheSearch from '@/components/TheSearch.vue'
 </script>
 
 <template>
-  Landing Page
+  <TheSearch />
 </template>
