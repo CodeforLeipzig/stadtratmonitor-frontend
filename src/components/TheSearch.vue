@@ -24,7 +24,7 @@ onUpdated(() => updateSearch(searchValue, searchType));
       />
       <div class="flex flex-row place-content-center">
         <button
-          class="py-2 px-4 bg-primary-button-500 hover:bg-primary-button-600 rounded-l-lg text-white"
+          class="py-2 px-4 bg-primary-button-500 hover:bg-primary-button-600 rounded-l-lg text-text-800"
           @click.prevent="submit('filter')"
           aria-keyshortcuts="Enter"
           >Suchen
